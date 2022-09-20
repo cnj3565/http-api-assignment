@@ -15,7 +15,7 @@ const success = (request, response, type) => {
   if (type[0] === 'text/xml') {
     const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
-    return response(request, response, 200, xmlString, 'text/xml');
+    return respond(request, response, 200, xmlString, 'text/xml');
   }
 
   const responseJSON = JSON.stringify(responseMsg);
