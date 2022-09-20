@@ -42,7 +42,7 @@
         content.innerHTML += `<p>${parsedData.querySelector('message').textContent}>/p>`;
       } else { 
         // Defaults to JSON if no Accept Header is Present
-        console.log("!!AAA!! resText: " += resText);
+        console.log("!!AAA!! resText: " + resText);
         const parsedData = JSON.parse(resText);
         content.innerHTML += `<p>${parsedData.message}</p>`;
       }
