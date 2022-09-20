@@ -1,0 +1,21 @@
+{
+  "name": "http-api-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Test Complete\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnj3565/http-api-assignment.git"
+  },
+  "author": "Carter Jensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cnj3565/http-api-assignment/issues"
+  },
+  "homepage": "https://github.com/cnj3565/http-api-assignment#readme"
+}

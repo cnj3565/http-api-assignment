@@ -5,7 +5,72 @@
   <link rel="stylesheet" type="text/css" href="/style.css">
   
   <script>
+    const handleResponse = async (response) => {
+      response.text().then((resText) => {
+        const contentType = response.headers.get('Content-Type');
+        const content = document.getElementById('content');
+        console.log(resText);
+      switch(response.status){
+        case 200:
+          content.innerHTML = `<b>Success</b>`;
+          break;
+        case 400:
+          content.innerHTML = `<b>Bad Request</b>`;
+          break;
+        case 404:
+          content.innerHTML = `<b>Not Found</b>`;
+          break;
+        case 401:
+          content.innerHTML = `<b>Unauthorized Request!</b>`;
+          break;
+        case 403:
+          content.innerHTML = `<b>Forbidden Access!</b>`;
+          break;
+        case 500:
+          content.innerHTML = `<b>Internal Server Error!</b>`;
+          break;
+        case 501:
+          content.innerHTML = `<b>Not Yet Implemented!</b>`;
+          break;
+        default:
+          content.innerHTML = `<p>Status Code not set</b>`;
+          break;
+      }
 
+      if (contentType === 'text/html') {
+        const parsedData = new window.DOMParser().parseFromString(resText, 'text/xml');
+        content.innerHTML += `<p>${parsedData.querySelector('message').textContent}>/p>`;
+      } else { 
+        // Defaults to JSON if no Accept Header is Present
+        const parsedData = JSON.parse(resText);
+        content.innerHTML += `<p>${parsedData.message}>/p>`;
+      }
+      });
+    };
+    
+    const sendFetch = (url, acceptedType) => {
+      const options = {
+        method: 'GET', 
+        headers: {
+          'Accept': acceptedType,
+        },
+      };
+
+      const fetchPromise = fetch(url, options);
+      fetchpromise.then(() => {
+        handleResponse(response);
+      });
+    };
+
+    const init = () => {
+      const pageType = document.querySelector("#page");
+      const parseType = document.querySelector("#type");
+      const sendButton = document.querySelector("#send");
+
+      sendButton.addEventListener('click', () => sendFetch(pageType.value, parseType.value));
+    };
+
+    window.onload = init;
   </script>
 </head>
 <body>
