@@ -12,10 +12,10 @@ const success = (request, response, type) => {
     message: 'This is a successful response',
   };
 
-  if (type[0] === 'text/html') {
-    const xmlString = `<response>${responseMsg.message}</response>`;
+  if (type[0] === 'text/xml') {
+    const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
-    return response(request, respond, 200, xmlString, 'text/xml');
+    return response(request, response, 200, xmlString, 'text/xml');
   }
 
   const responseJSON = JSON.stringify(responseMsg);
@@ -23,7 +23,7 @@ const success = (request, response, type) => {
 };
 
 // Bad Request Made (Valid True/Missing)
-const badRequest = (request, response, params, type) => {
+const badRequest = (request, response, type, params) => {
   const responseMsg = {
     message: 'This request has the required parameters',
   };
@@ -35,10 +35,10 @@ const badRequest = (request, response, params, type) => {
     status = 400;
   }
 
-  if (type[0] === 'text/html') {
-    const xmlString = `<response>${responseMsg.message}</response>`;
+  if (type[0] === 'text/xml') {
+    const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
-    return response(request, respond, status, xmlString, 'text/xml');
+    return respond(request, response, status, xmlString, 'text/xml');
   }
 
   const responseJSON = JSON.stringify(responseMsg);
@@ -52,8 +52,8 @@ const notFound = (request, response, type) => {
     id: 'notFound',
   };
 
-  if (type[0] === 'text/html') {
-    const xmlString = `<response>${responseMsg.message}</response>`;
+  if (type[0] === 'text/xml') {
+    const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
     return respond(request, response, 404, xmlString, 'text/xml');
   }
@@ -75,10 +75,10 @@ const unauthorized = (request, response, type, params) => {
     status = 401;
   }
 
-  if (type[0] === 'text/html') {
-    const xmlString = `<response>${responseMsg.message}</response>`;
+  if (type[0] === 'text/xml') {
+    const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
-    return response(request, response, status, xmlString, 'text/xml');
+    return respond(request, response, status, xmlString, 'text/xml');
   }
 
   const responseJSON = JSON.stringify(responseMsg);
@@ -92,10 +92,10 @@ const forbidden = (request, response, type) => {
     id: 'forbidden',
   };
 
-  if (type[0] === 'text/html') {
-    const xmlString = `<response>${responseMsg.message}</response>`;
+  if (type[0] === 'text/xml') {
+    const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
-    return response(request, response, 403, xmlString, 'text/xml');
+    return respond(request, response, 403, xmlString, 'text/xml');
   }
 
   const responseJSON = JSON.stringify(responseMsg);
@@ -109,10 +109,10 @@ const serverError = (request, response, type) => {
     id: 'internalServerError',
   };
 
-  if (type[0] === 'text/html') {
-    const xmlString = `<response>${responseMsg.message}</response>`;
+  if (type[0] === 'text/xml') {
+    const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
-    return response(request, response, 500, xmlString, 'text/xml');
+    return respond(request, response, 500, xmlString, 'text/xml');
   }
 
   const responseJSON = JSON.stringify(responseMsg);
@@ -126,14 +126,14 @@ const notImplemented = (request, response, type) => {
     id: 'notImplemented',
   };
 
-  if (type[0] === 'text/html') {
-    const xmlString = `<response>${responseMsg.message}</response>`;
+  if (type[0] === 'text/xml') {
+    const xmlString = `<response><message>${responseMsg.message}</message></response>`;
 
-    return response(request, response, 500, xmlString, 'text/xml');
+    return respond(request, response, 501, xmlString, 'text/xml');
   }
 
   const responseJSON = JSON.stringify(responseMsg);
-  return respond(request, response, 500, responseJSON, 'application/json');
+  return respond(request, response, 501, responseJSON, 'application/json');
 };
 
 module.exports = {

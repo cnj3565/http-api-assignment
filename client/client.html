@@ -37,9 +37,9 @@
           break;
       }
 
-      if (contentType === 'text/html') {
+      if (contentType === 'text/xml') {
         const parsedData = new window.DOMParser().parseFromString(resText, 'text/xml');
-        content.innerHTML += `<p>${parsedData.querySelector('message').textContent}>/p>`;
+        content.innerHTML += `<p>${parsedData.querySelector('message').textContent}</p>`;
       } else { 
         // Defaults to JSON if no Accept Header is Present
         const parsedData = JSON.parse(resText);

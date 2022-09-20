@@ -21,11 +21,12 @@ const urlStruct = {
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
   const queryParams = query.parse(parsedUrl.query);
+  const acceptedTypes = request.headers.accept.split(',');
 
   if (urlStruct[parsedUrl.pathname]) {
-    urlStruct[parsedUrl.pathname](request, response, queryParams);
+    urlStruct[parsedUrl.pathname](request, response, acceptedTypes, queryParams);
   } else {
-    urlStruct.notFound(request, response);
+    urlStruct.notFound(request, response, acceptedTypes);
   }
 };
 
