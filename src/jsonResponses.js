@@ -63,7 +63,7 @@ const notFound = (request, response, type) => {
 };
 
 // Unauthorized Access (Loggin In/Logged Out)
-const unauthorized = (request, response, params, type) => {
+const unauthorized = (request, response, type, params) => {
   const responseMsg = {
     message: 'This request has the required parameters',
   };
@@ -122,7 +122,7 @@ const serverError = (request, response, type) => {
 // Not Yet Implemented
 const notImplemented = (request, response, type) => {
   const responseMsg = {
-    message: 'This hass\'t been implemented yet. Check back later.',
+    message: 'This has\'t been implemented yet. Check back later.',
     id: 'notImplemented',
   };
 
