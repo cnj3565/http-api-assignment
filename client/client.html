@@ -33,7 +33,7 @@
           content.innerHTML = `<b>Not Yet Implemented!</b>`;
           break;
         default:
-          content.innerHTML = `<p>Status Code not set</b>`;
+          content.innerHTML = `<b>Status Code not set</b>`;
           break;
       }
 
@@ -42,8 +42,9 @@
         content.innerHTML += `<p>${parsedData.querySelector('message').textContent}>/p>`;
       } else { 
         // Defaults to JSON if no Accept Header is Present
+        console.log("!!AAA!! resText: " += resText);
         const parsedData = JSON.parse(resText);
-        content.innerHTML += `<p>${parsedData.message}>/p>`;
+        content.innerHTML += `<p>${parsedData.message}</p>`;
       }
       });
     };
