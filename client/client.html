@@ -57,7 +57,7 @@
       };
 
       const fetchPromise = fetch(url, options);
-      fetchPromise.then(() => {
+      fetchPromise.then((response) => {
         handleResponse(response);
       });
     };
